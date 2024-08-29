@@ -4,7 +4,7 @@ import { Container, TextField, Button, AlertTitle, Divider, Box, createTheme, Th
 
 import TasksInputsProps from './utils/Input.props.ts';
 
-import ListTasks from './components/List.tsx';
+import Task from './components/Task.tsx';
 
 import axios from 'axios';
 const API_URL = 'http://localhost:5000/tasks';
@@ -126,16 +126,31 @@ const App = () => {
           {tasks.length >= 1 ? (
             <>
               <List
-                style={{
-                  border: tasks.length > 8 ? '1px solid rgba(255, 255, 255, 0.2)' : 'none',
+                sx={{
+                  border: tasks.length > 5 ? '1px solid rgba(255, 255, 255, 0.2)' : 'none',
                   borderRadius: '5px',
                   padding: '10px',
-                  height: tasks.length > 8 ? '500px' : 'auto',
-                  overflowY: tasks.length > 8 ? 'scroll' : 'hidden',
+                  height: tasks.length > 5 ? '500px' : 'auto',
+                  overflowY: tasks.length > 5 ? 'scroll' : 'hidden',
                   textAlign: 'center',
+                  '&::-webkit-scrollbar': {
+                    width: '8px',
+                  },
+                  '&::-webkit-scrollbar-thumb': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    borderRadius: '2px',
+                  },
+                  '&::-webkit-scrollbar-thumb:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+                  },
+                  '&::-webkit-scrollbar-track': {
+                    backgroundColor: 'transparent',
+                  },
+                  scrollbarWidth: 'thin',
+                  scrollbarColor: 'rgba(255, 255, 255, 0.2) transparent',
                 }}
               >
-                <ListTasks
+                <Task
                   tasks={tasks}
                   onEdit={editTask}
                   onComplete={toggleTaskCompletion}
