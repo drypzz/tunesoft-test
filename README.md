@@ -3,7 +3,7 @@
 ## 📰 Informações
 
 - Data de início: 27/08/24
-- Data de término: ...
+- Data de término: 29/08/24
 
 ---
 
@@ -12,7 +12,7 @@
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - TypeScript
-- React
+- React.js
 - JSON Server
 - MUI
 
@@ -24,14 +24,14 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ---
 
-## 📥 Inicializar o JSON Server
+## 📥 Inicializar o Projeto
 
-- Execute o comando
-```cmd
-json-server --watch db.json --port 5000
-```
-- E pronto, o db.json vai estar rodando na porta 5000
-
+Execute o arquivo
+<a href="https://github.com/drypzz/tunesoft-test/blob/master/start.bat">
+  start.bat
+</a>
+<br />
+- E pronto, o projeto vai começar a rodar.
 ---
 
 Feito com ♥ by drypzz
