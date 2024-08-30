@@ -3,7 +3,7 @@
 ## 📰 Informações
 
 - Data de início: 27/08/24
-- Data de término: ...
+- Data de término: 29/08/24
 
 ---
 
