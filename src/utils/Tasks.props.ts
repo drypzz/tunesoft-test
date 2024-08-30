@@ -2,9 +2,9 @@ interface TaskProps {
     id: number;
     title: string;
     description: string;
-    completed: boolean;
+    status: string;
     onEdit: (id: number, newTitle: string, newDescription: string) => void;
-    onComplete: (id: number) => void;
+    onComplete: (id: number, status: string) => void;
     onDelete: (id: number) => void;
 }
 
@@ -13,10 +13,10 @@ interface ListProps {
         id: number;
         title: string;
         description: string;
-        completed: boolean
+        status: string;
     }[];
     onEdit: (id: number, newTitle: string, newDescription: string) => void;
-    onComplete: (id: number) => void;
+    onComplete: (id: number, status: string) => void;
     onDelete: (id: number) => void;
 }
 
