@@ -12,7 +12,7 @@
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - TypeScript
-- React
+- React.js
 - JSON Server
 - MUI
 
