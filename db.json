@@ -1,46 +1,34 @@
 {
   "tasks": [
     {
-      "id": "c050",
-      "title": "asdas",
-      "description": "dasdasd",
-      "completed": false
+      "id": "d1fb",
+      "title": "Implement Firebase Authentication",
+      "description": "Set up Firebase Authentication with email/password, password recovery, and social login options.",
+      "status": "default"
     },
     {
-      "id": "e662",
-      "title": "dasdas",
-      "description": "dasdad",
-      "completed": false
+      "id": "ac38",
+      "title": "Optimize Image Loading in Next.js",
+      "description": "Implement image optimizations with next/image, including lazy loading and WebP format.",
+      "status": "doing"
     },
     {
-      "id": "0362",
-      "title": "dasdasdsadddddddddd",
-      "description": "asddddddd",
-      "completed": false
+      "id": "256e",
+      "title": "Develop RESTful API for Project Management",
+      "description": "Build a Node.js API with Express for project CRUD operations, secured with JWT authentication.",
+      "status": "complete"
     },
     {
-      "id": "0a06",
-      "title": "asdasd",
-      "description": "asdas",
-      "completed": false
+      "id": "04c7",
+      "title": "Integrate Google Analytics in React App",
+      "description": "Add Google Analytics to a React app, tracking page views and custom events.",
+      "status": "default"
     },
     {
-      "id": "2d0a",
-      "title": "dasdasdsa",
-      "description": "dasdasd",
-      "completed": false
-    },
-    {
-      "id": "b7b7",
-      "title": "dasdas",
-      "description": "dasdasd",
-      "completed": false
-    },
-    {
-      "id": "935f",
-      "title": "dasdas",
-      "description": "dasdasd",
-      "completed": false
+      "id": "6d3d",
+      "title": "Implement Dark Mode with Context API",
+      "description": "Add Dark Mode support in a React app using Context API for global theme management.",
+      "status": "default"
     }
   ]
 }
