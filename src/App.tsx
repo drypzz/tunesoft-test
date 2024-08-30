@@ -7,7 +7,7 @@ import { Container, TextField, Button, AlertTitle, Divider, Box, createTheme, Th
 import TasksInputsProps from './utils/Input.props.ts';
 
 // Componente Task
-import Task from './components/Task.tsx';
+import ListTask from './components/List.tsx';
 
 // Axios
 import axios from 'axios';
@@ -187,7 +187,7 @@ const App = () => {
                     }}
                   >
                     {/* Componente Task */}
-                    <Task
+                    <ListTask
                       tasks={tasks}
                       onEdit={editTask}
                       onComplete={toggleTaskStatus}
