@@ -10,7 +10,7 @@ export interface ICardBacklogComponentsProps {
    order: number;
    id: number;
    title: string;
-   assignedTo: string;
+   createdBy: string;
    state: string;
    tags?: string[];
    tasks?: Task[];

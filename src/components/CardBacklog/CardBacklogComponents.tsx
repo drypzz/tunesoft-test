@@ -1,161 +1,194 @@
-import React from "react";
-
-import {
-   Card,
-   CardContent,
-   Typography,
-   Chip,
-   Box,
-   Accordion,
-   AccordionSummary,
-   AccordionDetails,
-   List,
-   ListItem,
-   ListItemText,
-   Grid,
-   Avatar,
-   Button,
+import React, { useState } from "react";
+import { 
+   Card, CardContent, Typography, Chip, Box, Avatar, Button, 
+   Accordion, AccordionSummary, AccordionDetails, Modal, Fade, Backdrop,
+   Divider
 } from "@mui/material";
-// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { AddCircle, ExpandMore} from "@mui/icons-material";
-
+import { DataGrid } from "@mui/x-data-grid";
+import { AddCircle, ExpandMore } from "@mui/icons-material";
 import { ICardBacklogComponentsProps } from "./CardBacklogComponents.types";
 
 export const CardBacklogComponents = ({
    order,
    id,
    title,
-   assignedTo,
+   createdBy,
    state,
    tags = [],
    tasks = [],
 }: ICardBacklogComponentsProps) => {
+   const [open, setOpen] = useState(false);
+   const [selectedTask, setSelectedTask] = useState<{ id: number; title: string; description: string, state: string;  } | null>(null);
+   // const [test, setTest ] = useState<tasks>();
+
+   const handleOpen = (task: any) => {
+      setSelectedTask(task);
+      setOpen(true);
+   };
+
+   const handleClose = () => setOpen(false);
+
+   const columns = [
+      { field: "id", headerName: "ID", width: 70 },
+      { 
+         field: "title", 
+         headerName: "Título", 
+         flex: 1, 
+         renderCell: (params) => (
+            <Typography 
+               variant="body2" 
+               color="primary" 
+               sx={{ 
+                  display: 'flex', alignItems: 'center', height: '100%', width: '100%', 
+                  whiteSpace: 'normal', wordBreak: 'break-word', 
+                  cursor: 'pointer', textDecoration: 'none', color: '#FFF',
+                  '&:hover': { color: '#1976d2', textDecoration: 'underline', transition: 'all ease-in-out .3s'}, 
+               }} 
+               onClick={() => handleOpen(params.row)}
+            >
+               {params.value}
+            </Typography>
+         )
+      },
+      { field: "assignedTo", headerName: "Atribuído Para", width: 150, renderCell: (params) => (
+         <Chip avatar={<Avatar>{params.value[0]}</Avatar>} label={params.value} />
+      )},
+      { field: "state", headerName: "Status", width: 130, renderCell: (params) => (
+         params.value === "done" ? <Chip label="Done" color="success" /> :
+         params.value === "doing" ? <Chip label="Doing" color="info" /> :
+         <Chip label="To do" color="default" />
+      )},
+   ];
+
+
    return (
       <Card sx={{ mb: 2, p: 2, borderLeft: "5px solid #1976d2", backgroundColor: "rgba(255, 255, 255, 0.01)" }}>
          <CardContent>
-            <Grid container spacing={2} alignItems="center">
-               <Grid xs={12} sm={8}>
-                  <Typography variant="h6">
-                     {order}. {title}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                     ID: {id} | Atribuído para
-                     <Chip 
-                        sx={{ ml: 1 }}
-                        avatar={
-                           <Avatar>{assignedTo[0]}</Avatar>
-                        } 
-                        label={`${assignedTo}`} 
-                        onClick={() => console.log("Selecionar usuário, ao criar a Issue vai pegar o nome que foi criado da conta do usuário")}
-                     />
-                  </Typography>
-               </Grid>
-               <Grid xs={12} sm={4} display="flex" justifyContent="flex-end">
-                  <Typography component="span" variant="body1">
-                     {state === "done" ? (
-                        <Chip label="Done" color="success" onClick={() => console.log("Selecionar o status da Issue")} />
-                     ) : state === "in-progress" ? (
-                        <Chip label="In Progress" color="primary" onClick={() => console.log("Selecionar o status da Issue")} />
-                     ) : (
-                        <Chip label="To do" color="default" onClick={() => console.log("Selecionar o status da Issue")} />
-                     )}
-                  </Typography>
-               </Grid>
-            </Grid>
-            {tags.length > 0 && (
-               <Box sx={{
+            <Box
+               sx={{
                   display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
                   justifyContent: "space-between",
-                  mb: 2,
-               }}>
-                  <Box mt={2} mb={2} display="flex" gap={1}>
+                  alignItems: "center",
+               }}
+            >
+               <Typography variant="h6">{order}. {title}</Typography>
+
+               <Typography variant="body2" color="textSecondary">
+                  <Chip 
+                     label={
+                        state === "done" ? "Done" :
+                        state === "doing" ? "Doing" :
+                        "To Do"
+                     }
+                     color={
+                        state === "done" ? "success" :
+                        state === "doing" ? "info" :
+                        "default"
+                     }
+                  />
+               </Typography>
+            </Box>
+
+            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+               <Typography variant="body2" color="textSecondary">
+                  ID: {id} | Criado por 
+                  <Chip sx={{ ml: 1 }} avatar={<Avatar>{createdBy[0]}</Avatar>} label={createdBy} />
+               </Typography>
+               
+               {tags.length > 0 && (
+                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 2, mb: 2 }}>
                      {tags.map((tag) => (
                         <Chip key={tag} label={tag} color="primary" />
                      ))}
                   </Box>
-                  <Box sx={{
-                     display: "flex",
-                     flexDirection: "row",
-                     alignItems: "center",
-                     justifyContent: "flex-end",
-                     mt: 2,
-                  }}>
-                     <Button variant="contained" startIcon={<AddCircle />} onClick={() => console.log("Criar uma nova Task")}>
-                        Criar Task
-                     </Button>
-                  </Box>
+               )}
+            </Box>
+
+            {tasks.length > 0 ? (
+               <Accordion sx={{ width: '100%', mt: 2 }}>
+                  <AccordionSummary expandIcon={<ExpandMore />}>
+                     <Typography variant="subtitle1">Tasks</Typography>
+                  </AccordionSummary>
+
+                  <AccordionDetails>
+                     <Box sx={{ height: 380, width: "100%" }}>
+                        <DataGrid
+                           rows={tasks}
+                           columns={columns}
+                           initialState={{
+                              pagination: {
+                                 paginationModel: {
+                                    pageSize: 5,
+                                 },
+                              },
+                           }}
+                           disableRowSelectionOnClick
+                           disableColumnMenu
+                           autoHeight
+                        />
+                     </Box>
+                  </AccordionDetails>
+               </Accordion>
+            ) :  (
+               <Box sx={{ mt: 2 }}>
+                  <Typography sx={{ p: 0.5, backgroundColor: 'rgba(255, 0, 0, 0.1)', width: '20%', display: 'flex', justifyContent: 'center'}} variant="body2" color="error">Nenhuma task encontrada</Typography>
                </Box>
             )}
-            {tasks.length > 0 ? (
-               <>
-                  <Accordion sx={{ width: '100%'}}>
-                     <AccordionSummary expandIcon={<ExpandMore />}>
-                        <Typography sx={{ ml: 1 }} variant="subtitle1">Tasks</Typography>
-                     </AccordionSummary>
-                     <AccordionDetails sx={{ padding: 0 }}>
-                        <List>
-                           {tasks.map((task) => (
-                              <ListItem key={task.id} divider>
-                                 <ListItemText
-                                    primary={
-                                       <>
-                                          <Typography component="span" variant="body1">
-                                             {task.id}. {task.title}
-                                          </Typography>
-                                          <Typography sx={{ ml: 1 }} component="span" variant="body1">
-                                             {task.state === "done" ? (
-                                                <Chip label="Done" color="success" onClick={() => console.log("Selecionar o status da Task")} />
-                                             ) : task.state === "in-progress" ? (
-                                                <Chip label="In Progress" color="primary" onClick={() => console.log("Selecionar o status da Task")} />
-                                             ) : (
-                                                <Chip label="To do" color="default" onClick={() => console.log("Selecionar o status da Task")} />
-                                             )}
-                                          </Typography>
 
-                                       </>
-                                    }
-                                    secondary={
-                                       <>
-                                          <Typography component="span" variant="body2">
-                                             Atribuído para
-                                             <Chip 
-                                                sx={{ m: 1 }}
-                                                avatar={
-                                                   <Avatar>{task.assignedTo[0]}</Avatar>
-                                                } 
-                                                label={`${task.assignedTo}`}
-                                                onClick={() => console.log("Selecionar usuário, ao criar a Issue vai pegar o nome que foi criado da conta do usuário")}
-                                             />
-                                          </Typography>
-                                          <br />
-                                          <Typography component="span" variant="body2">
-                                             {task.description}
-                                          </Typography>
-                                       </>
-                                    }
-                                    />
-                              </ListItem>
-                           ))}
-                        </List>
-                     </AccordionDetails>
-                  </Accordion>
-               </>
-            ) : (
-               <Box sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-end",
-                  mt: 1,
+            <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
+               <Button variant="contained" startIcon={<AddCircle />}>
+                  Criar Task
+               </Button>
+            </Box>
+         </CardContent>
+
+         <Modal
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{ timeout: 500 }}
+         >
+            <Fade in={open}>
+               <Box sx={{ 
+                  position: "absolute", 
+                  top: "50%", 
+                  left: "50%", 
+                  transform: "translate(-50%, -50%)",
+                  width: 450, 
+                  bgcolor: "background.paper", 
+                  boxShadow: 24, 
+                  p: 3, 
+                  borderRadius: 2
                }}>
-                  <Button variant="contained" startIcon={<AddCircle />} onClick={() => console.log("Criar uma nova Task")}>
-                     Criar Task
+                  <Typography variant="body1" sx={{ fontWeight: "bold", mb: 1, color: "rgba(255, 255, 255, 0.9)" }}>
+                     ID: {selectedTask?.id}. {selectedTask?.title}
+                  </Typography>
+
+                  <Divider sx={{ my: 2 }} />
+
+                  <Typography variant="body1" sx={{ mb: 2, color: "rgba(255, 255, 255, 0.9)" }}>
+                     {selectedTask?.description}
+                  </Typography>
+
+                  <Chip 
+                     label={selectedTask?.state} 
+                     color={selectedTask?.state === "done" ? "success" : selectedTask?.state === "in-progress" ? "primary" : "default"} 
+                  />
+
+                  <Button sx={{
+                     display: "flex",
+                     justifyContent: "center",
+                     alignItems: "center",
+                     width: "100%",
+                     mt: 2, 
+                  }} onClick={handleClose}>
+                     Fechar
                   </Button>
                </Box>
-            )}
-         </CardContent>
-    </Card>
-   )
-}
+            </Fade>
+         </Modal>
+
+      </Card>
+   );
+};

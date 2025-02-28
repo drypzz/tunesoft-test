@@ -42,68 +42,96 @@ export const TemplateContainer = () => {
   
    const issues: ICardBacklogComponentsProps[] = [
       {
-         order: 1,
-         id: 10,
-         title: "Ajustes na logica do carrinho do site",
-         assignedTo: "Lincoln",
-         state: "To Do",
-         tags: ["CARRINHO"],
-         tasks: [
-            {
-               id: 101,
-               title: "Criar lógica de adicionar produto ao carrinho",
-               assignedTo: "Gustavo",
-               state: "done",
-               description: "Pegue o incone de adicionar ao carrinho e faça a lógica de adicionar o produto ao carrinho",
-            },
-            {
-               id: 102,
-               title: "Criar lógica de remover produto do carrinho",
-               assignedTo: "Gustavo",
-               state: "in-progress",
-               description: "Pegue o incone de remover do carrinho e faça a lógica de remover o produto do carrinho",
-            },
-            {
-               id: 103,
-               title: "Criar lógica de calcular o valor total do carrinho",
-               assignedTo: "Gustavo",
-               state: "To Do",
-               description: "Calcular o valor total do carrinho e exibir na tela",
-            }
-         ]
+        order: 1,
+        id: 10,
+        title: "Ajustes na logica do carrinho do site",
+        createdBy: "Lincoln",
+        state: "doing",
+        tags: ["CARRINHO"],
+        tasks: [
+          {
+            id: 101,
+            title: "Criar lógica de adicionar produto ao carrinho", // maximo de 215 caracteres
+            assignedTo: "Gustavo",
+            state: "done",
+            description: "Pegue o incone de adicionar ao carrinho e faça a lógica de adicionar o produto ao carrinho",
+          },
+          {
+            id: 102,
+            title: "Criar lógica de remover produto do carrinho",
+            assignedTo: "Gustavo",
+            state: "doing",
+            description: "Pegue o incone de remover do carrinho e faça a lógica de remover o produto do carrinho",
+          },
+          {
+            id: 103,
+            title: "Criar lógica de calcular o valor total do carrinho",
+            assignedTo: "Gustavo",
+            state: "To Do",
+            description: "Calcular o valor total do carrinho e exibir na tela",
+          },
+          {
+            id: 104,
+            title: "Criar lógica de calcular o valor total do carrinho",
+            assignedTo: "Gustavo",
+            state: "To Do",
+            description: "Calcular o valor total do carrinho e exibir na tela",
+          },
+          {
+            id: 105,
+            title: "Criar lógica de calcular o valor total do carrinho",
+            assignedTo: "Gustavo",
+            state: "To Do",
+            description: "Calcular o valor total do carrinho e exibir na tela",
+          },
+          {
+            id: 106,
+            title: "Criar lógica de calcular o valor total do carrinho",
+            assignedTo: "Gustavo",
+            state: "To Do",
+            description: "Calcular o valor total do carrinho e exibir na tela",
+          },
+          {
+            id: 107,
+            title: "Criar lógica de calcular o valor total do carrinho",
+            assignedTo: "Gustavo",
+            state: "To Do",
+            description: "Calcular o valor total do carrinho e exibir na tela",
+          },
+        ]
       },
       {
-         order: 2,
-         id: 11,
-         title: "Ajustes no layout do site",
-         assignedTo: "Lincoln",
-         state: "To Do",
-         tags: ["LAYOUT", "FRONTEND"],
-         tasks: [
-            {
-               id: 111,
-               title: "Ajustar o layout da página de produtos",
-               assignedTo: "Lincoln",
-               state: "done",
-               description: "Ajustar o layout da página de produtos para que fique responsivo",
-            },
-            {
-               id: 112,
-               title: "Ajustar o layout da página de carrinho",
-               assignedTo: "Lincoln",
-               state: "To Do",
-               description: "Ajustar o layout da página de carrinho para que fique responsivo",
-            },
-         ]
+        order: 2,
+        id: 11,
+        title: "Ajustes no layout do site",
+        createdBy: "Lincoln",
+        state: "To Do",
+        tags: ["LAYOUT", "FRONTEND"],
+        tasks: [
+          {
+            id: 111,
+            title: "Ajustar o layout da página de produtos",
+            assignedTo: "Lincoln",
+            state: "done",
+            description: "Ajustar o layout da página de produtos para que fique responsivo",
+          },
+          {
+            id: 112,
+            title: "Ajustar o layout da página de carrinho",
+            assignedTo: "Lincoln",
+            state: "doing",
+            description: "Ajustar o layout da página de carrinho para que fique responsivo",
+          },
+        ]
       },
       {
-         order: 3,
-         id: 12,
-         title: "Fazer lógica do site",
-         assignedTo: "Gustavo",
-         state: "To Do",
-         tags: [],
-         tasks: []
+        order: 3,
+        id: 12,
+        title: "Fazer lógica do site",
+        createdBy: "Gustavo",
+        state: "done",
+        tags: [],
+        tasks: []
       }
    ];
 
@@ -115,7 +143,7 @@ export const TemplateContainer = () => {
         {/* Título do projeto */}
         <Box sx={{ margin: '30px 0' }}>
           <h1 style={{ textAlign: 'center', color: '#90caf9' }}>
-            GL Code Lab - Tasks
+            GL - Taskers
           </h1>
         </Box>
 

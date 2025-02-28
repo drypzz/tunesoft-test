@@ -1,9 +1,9 @@
-# Tunesoft - Teste
+# GL - Taskers
 
 ## 📰 Informações
 
-- Data de início: 27/08/24
-- Data de término: 29/08/24
+- Versão: 1.0.0
+- Última atualização: 28 Fev. 2025
 
 ---
 
@@ -20,7 +20,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-- Este projeto é um teste da Tunesoft
+- Este projeto é um teste da GL Code Lab
 
 ---
 
@@ -34,4 +34,4 @@ Execute o arquivo
 - E pronto, o projeto vai começar a rodar.
 ---
 
-Feito com ♥ by drypzz
+Feito com ♥ by drypzz and function404
