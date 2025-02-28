@@ -4,9 +4,11 @@ import {
    Accordion, AccordionSummary, AccordionDetails, Modal, Fade, Backdrop,
    Divider
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import { AddCircle, ExpandMore } from "@mui/icons-material";
-import { ICardBacklogComponentsProps } from "./CardBacklogComponents.types";
+
+import { DataGrid } from "@mui/x-data-grid";
+
+import { ICardBacklogComponentsProps, Task } from "./CardBacklogComponents.types";
 
 export const CardBacklogComponents = ({
    order,
@@ -18,8 +20,7 @@ export const CardBacklogComponents = ({
    tasks = [],
 }: ICardBacklogComponentsProps) => {
    const [open, setOpen] = useState(false);
-   const [selectedTask, setSelectedTask] = useState<{ id: number; title: string; description: string, state: string;  } | null>(null);
-   // const [test, setTest ] = useState<tasks>();
+   const [selectedTask, setSelectedTask] = useState<{ id: number; title: string; description: string, state: string;  } | Task>();
 
    const handleOpen = (task: any) => {
       setSelectedTask(task);
@@ -54,9 +55,19 @@ export const CardBacklogComponents = ({
          <Chip avatar={<Avatar>{params.value[0]}</Avatar>} label={params.value} />
       )},
       { field: "state", headerName: "Status", width: 130, renderCell: (params) => (
-         params.value === "done" ? <Chip label="Done" color="success" /> :
-         params.value === "doing" ? <Chip label="Doing" color="info" /> :
-         <Chip label="To do" color="default" />
+         <Chip 
+            label={
+               params.value === "Feito" ? "Feito" :
+               params.value === "Fazendo" ? "Fazendo" :
+               "A Fazer"
+            }
+            color={
+               params.value === "Feito" ? "success" :
+               params.value === "Fazendo" ? "info" :
+               "default"
+            }
+            onClick={() => {console.log('Abrir Modal para mudar o status')}}
+         />
       )},
    ];
 
@@ -76,15 +87,16 @@ export const CardBacklogComponents = ({
                <Typography variant="body2" color="textSecondary">
                   <Chip 
                      label={
-                        state === "done" ? "Done" :
-                        state === "doing" ? "Doing" :
-                        "To Do"
+                        state === "Feito" ? "Feito" :
+                        state === "Fazendo" ? "Fazendo" :
+                        "A Fazer"
                      }
                      color={
-                        state === "done" ? "success" :
-                        state === "doing" ? "info" :
+                        state === "Feito" ? "success" :
+                        state === "Fazendo" ? "info" :
                         "default"
                      }
+                     onClick={() => {console.log('Abrir Modal para mudar o status')}}
                   />
                </Typography>
             </Box>
@@ -173,7 +185,7 @@ export const CardBacklogComponents = ({
 
                   <Chip 
                      label={selectedTask?.state} 
-                     color={selectedTask?.state === "done" ? "success" : selectedTask?.state === "in-progress" ? "primary" : "default"} 
+                     color={selectedTask?.state === "Feito" ? "success" : selectedTask?.state === "in-progress" ? "primary" : "default"} 
                   />
 
                   <Button sx={{

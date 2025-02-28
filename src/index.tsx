@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { TemplateContainer } from './Container/TemplateContainer.tsx';
+import { TemplateContainer } from './container/Template/TemplateContainer.tsx';
 
 import './index.css';
 

@@ -14,8 +14,8 @@ import {
 } from '@mui/material';
 
 // Componentes do card
-import { CardBacklogComponents } from '../components/CardBacklog/CardBacklogComponents.tsx';
-import { ICardBacklogComponentsProps } from "../components/CardBacklog/CardBacklogComponents.types";
+import { CardBacklogComponents } from '../../components/CardBacklog/CardBacklogComponents.tsx';
+import { ICardBacklogComponentsProps } from "../../components/CardBacklog/CardBacklogComponents.types";
 
 // Regras do TemplateContainer
 import { useTemplateContainerRules } from './TemplateContainer.rules.ts';
@@ -46,56 +46,56 @@ export const TemplateContainer = () => {
         id: 10,
         title: "Ajustes na logica do carrinho do site",
         createdBy: "Lincoln",
-        state: "doing",
+        state: "Fazendo",
         tags: ["CARRINHO"],
         tasks: [
           {
             id: 101,
             title: "Criar lógica de adicionar produto ao carrinho", // maximo de 215 caracteres
             assignedTo: "Gustavo",
-            state: "done",
+            state: "Feito",
             description: "Pegue o incone de adicionar ao carrinho e faça a lógica de adicionar o produto ao carrinho",
           },
           {
             id: 102,
             title: "Criar lógica de remover produto do carrinho",
             assignedTo: "Gustavo",
-            state: "doing",
+            state: "Fazendo",
             description: "Pegue o incone de remover do carrinho e faça a lógica de remover o produto do carrinho",
           },
           {
             id: 103,
             title: "Criar lógica de calcular o valor total do carrinho",
             assignedTo: "Gustavo",
-            state: "To Do",
+            state: "A Fazer",
             description: "Calcular o valor total do carrinho e exibir na tela",
           },
           {
             id: 104,
             title: "Criar lógica de calcular o valor total do carrinho",
             assignedTo: "Gustavo",
-            state: "To Do",
+            state: "A Fazer",
             description: "Calcular o valor total do carrinho e exibir na tela",
           },
           {
             id: 105,
             title: "Criar lógica de calcular o valor total do carrinho",
             assignedTo: "Gustavo",
-            state: "To Do",
+            state: "A Fazer",
             description: "Calcular o valor total do carrinho e exibir na tela",
           },
           {
             id: 106,
             title: "Criar lógica de calcular o valor total do carrinho",
             assignedTo: "Gustavo",
-            state: "To Do",
+            state: "A Fazer",
             description: "Calcular o valor total do carrinho e exibir na tela",
           },
           {
             id: 107,
             title: "Criar lógica de calcular o valor total do carrinho",
             assignedTo: "Gustavo",
-            state: "To Do",
+            state: "A Fazer",
             description: "Calcular o valor total do carrinho e exibir na tela",
           },
         ]
@@ -105,21 +105,21 @@ export const TemplateContainer = () => {
         id: 11,
         title: "Ajustes no layout do site",
         createdBy: "Lincoln",
-        state: "To Do",
+        state: "A Fazer",
         tags: ["LAYOUT", "FRONTEND"],
         tasks: [
           {
             id: 111,
             title: "Ajustar o layout da página de produtos",
             assignedTo: "Lincoln",
-            state: "done",
+            state: "Feito",
             description: "Ajustar o layout da página de produtos para que fique responsivo",
           },
           {
             id: 112,
             title: "Ajustar o layout da página de carrinho",
             assignedTo: "Lincoln",
-            state: "doing",
+            state: "Fazendo",
             description: "Ajustar o layout da página de carrinho para que fique responsivo",
           },
         ]
@@ -129,7 +129,7 @@ export const TemplateContainer = () => {
         id: 12,
         title: "Fazer lógica do site",
         createdBy: "Gustavo",
-        state: "done",
+        state: "Feito",
         tags: [],
         tasks: []
       }
@@ -165,7 +165,7 @@ export const TemplateContainer = () => {
             required
             fullWidth
           />
-        </Box>*/}
+        </Box> */}
 
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <TextField
@@ -192,7 +192,7 @@ export const TemplateContainer = () => {
           </Button>
         </Box>
 
-        {/* Lista das tarefas 
+         {/* Lista de tarefas 
         <Box sx={{ margin: '30px 0' }}>
 
           <Divider>
@@ -259,8 +259,8 @@ export const TemplateContainer = () => {
                 </>
               )}
             </>
-          )}
-        </Box> */}
+          )} 
+        </Box>*/}
 
          <Box sx={{ width: '100%', mx: "auto", mt: 4 }}>
             {issues.map((issues) => (
