@@ -3,7 +3,7 @@
 ## 📰 Informações
 
 - Versão: 1.0.0
-- Última atualização: 28 Fev. 2025
+- Última atualização: 03 Mar. 2025
 
 ---
 
@@ -13,7 +13,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - TypeScript
 - React.js
-- JSON Server
 - MUI
 
 ---
@@ -34,4 +33,4 @@ Execute o arquivo
 - E pronto, o projeto vai começar a rodar.
 ---
 
-Feito com ♥ by drypzz and function404
+by drypzz and function404

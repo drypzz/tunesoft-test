@@ -84,28 +84,28 @@ export const CardBacklogComponents = ({
             >
                <Typography variant="h6">{order}. {title}</Typography>
 
-               <Typography variant="body2" color="textSecondary">
-                  <Chip 
-                     label={
-                        state === "Feito" ? "Feito" :
-                        state === "Fazendo" ? "Fazendo" :
-                        "A Fazer"
-                     }
-                     color={
-                        state === "Feito" ? "success" :
-                        state === "Fazendo" ? "info" :
-                        "default"
-                     }
-                     onClick={() => {console.log('Abrir Modal para mudar o status')}}
-                  />
-               </Typography>
+               <Chip 
+                  label={
+                     state === "Feito" ? "Feito" :
+                     state === "Fazendo" ? "Fazendo" :
+                     "A Fazer"
+                  }
+                  color={
+                     state === "Feito" ? "success" :
+                     state === "Fazendo" ? "info" :
+                     "default"
+                  }
+                  onClick={() => {console.log('Abrir Modal para mudar o status')}}
+               />
             </Box>
 
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-               <Typography variant="body2" color="textSecondary">
-                  ID: {id} | Criado por 
+               <Box sx={{ display: "flex", alignItems: "center"}}>
+                  <Typography variant="body2" color="textSecondary">
+                     ID: {id} | Criado por 
+                  </Typography>
                   <Chip sx={{ ml: 1 }} avatar={<Avatar>{createdBy[0]}</Avatar>} label={createdBy} />
-               </Typography>
+               </Box>
                
                {tags.length > 0 && (
                   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 2, mb: 2 }}>
@@ -127,6 +127,7 @@ export const CardBacklogComponents = ({
                         <DataGrid
                            rows={tasks}
                            columns={columns}
+                           pageSizeOptions={[5]}
                            initialState={{
                               pagination: {
                                  paginationModel: {

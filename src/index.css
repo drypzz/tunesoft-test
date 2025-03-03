@@ -8,3 +8,8 @@
 body{
   background-color: #272727;
 }
+
+#tag{
+  max-width: none!important;
+  margin: 0 2px;
+}

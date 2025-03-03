@@ -1,4 +1,5 @@
 export interface ITemplateContainerProps {
    title: string;
-   description: string;
+   tags: string[];
+   tagsInput: string;
 }
