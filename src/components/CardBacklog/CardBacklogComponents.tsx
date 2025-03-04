@@ -91,10 +91,72 @@ export const CardBacklogComponents = ({
                            <List>
                               {tasks.map((task, index) => (
                                  <ListItem key={task.id} divider={index !== tasks.length - 1}>
-                                    <ListItemText
+                                    
+                                    <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 1 }}>
+                                       <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", mt: 1 }}>
+                                          <Typography component="span">
+                                             {task.id}. {task.title}
+                                          </Typography>
+                                          <Chip 
+                                             label={
+                                                task.state === "Feito" ? "Feito" :
+                                                task.state === "Fazendo" ? "Fazendo" :
+                                                "A Fazer"
+                                             }
+                                             color={
+                                                task.state === "Feito" ? "success" :
+                                                task.state === "Fazendo" ? "info" :
+                                                "default"
+                                             }
+                                             onClick={() => {console.log('Abrir Modal para mudar o status')}}
+                                          />
+                                       </Box>
+
+                                       <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+                                          <Box>
+                                             <Typography component="span" variant="body2">
+                                                Atribuído para
+                                             </Typography>
+                                             <Chip
+                                                sx={{ ml: 1 }}
+                                                avatar={<Avatar>{task.assignedTo[0]}</Avatar>} 
+                                                label={`${task.assignedTo}`}
+                                                onClick={() => console.log("Selecionar usuário, ao criar a Issue vai pegar o nome que foi criado da conta do usuário")}
+                                             />
+                                          </Box>
+                                          <Box>
+                                             <IconButton onClick={() => console.log("Editar Task")}>
+                                                <Edit/>
+                                             </IconButton>
+                                             <IconButton onClick={() => console.log("Deletar Task")}>
+                                                <Delete/>
+                                             </IconButton>
+                                          </Box>
+                                       </Box>
+                                       <Typography
+                                          sx={{
+                                             mt: 2,
+                                             color: "#b0b0b0",
+                                             position: "relative",
+                                             "&::before": {
+                                                content: "'•'",
+                                                position: "absolute",
+                                                left: "-10px",
+                                             }}
+                                          }
+                                          component="span"
+                                          variant="body2"
+                                       >
+                                          {task.description}
+                                       </Typography>
+                                    </Box>
+
+                                    {/* <ListItemText
                                        primary={
                                           <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                                             {task.id}. {task.title}
+                                             <Typography component="span">
+                                                {task.id}. {task.title}
+                                             </Typography>
                                              <Chip 
                                                 label={
                                                    task.state === "Feito" ? "Feito" :
@@ -113,15 +175,17 @@ export const CardBacklogComponents = ({
                                        secondary={
                                           <>
                                              <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                                                <Typography component="span" variant="body2">
-                                                   Atribuído para
-                                                   <Chip 
+                                                <Box>
+                                                   <Typography component="span" variant="body2">
+                                                      Atribuído para
+                                                   </Typography>
+                                                   <Chip
                                                       sx={{ m: 1 }}
                                                       avatar={<Avatar>{task.assignedTo[0]}</Avatar>} 
                                                       label={`${task.assignedTo}`}
                                                       onClick={() => console.log("Selecionar usuário, ao criar a Issue vai pegar o nome que foi criado da conta do usuário")}
                                                    />
-                                                </Typography>
+                                                </Box>
                                                 <Box>
                                                    <IconButton onClick={() => console.log("Editar Task")}>
                                                       <Edit/>
@@ -137,7 +201,8 @@ export const CardBacklogComponents = ({
                                              </Typography>
                                           </>
                                        }
-                                    />
+                                    /> */}
+
                                  </ListItem>
                               ))}
                            </List>

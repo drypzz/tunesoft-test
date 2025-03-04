@@ -3,7 +3,7 @@
 ## 📰 Informações
 
 - Versão: 1.0.0
-- Última atualização: 03 Mar. 2025
+- Última atualização: 04 Mar. 2025
 
 ---
 
