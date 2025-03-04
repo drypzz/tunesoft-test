@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { 
    Card, CardContent, Typography, Chip, Box, Avatar, Button, 
-   Accordion, AccordionSummary, AccordionDetails, Modal, Fade, Backdrop,
-   Divider
+   Accordion, AccordionSummary, AccordionDetails, 
+   List, ListItem, ListItemText, IconButton
 } from "@mui/material";
-import { AddCircle, ExpandMore } from "@mui/icons-material";
+import { AddCircle, Delete, Edit, ExpandMore } from "@mui/icons-material";
 
-import { DataGrid } from "@mui/x-data-grid";
-
-import { ICardBacklogComponentsProps, Task } from "./CardBacklogComponents.types";
+import { ICardBacklogComponentsProps } from "./CardBacklogComponents.types";
 
 export const CardBacklogComponents = ({
    order,
@@ -19,59 +17,6 @@ export const CardBacklogComponents = ({
    tags = [],
    tasks = [],
 }: ICardBacklogComponentsProps) => {
-   const [open, setOpen] = useState(false);
-   const [selectedTask, setSelectedTask] = useState<{ id: number; title: string; description: string, state: string;  } | Task>();
-
-   const handleOpen = (task: any) => {
-      setSelectedTask(task);
-      setOpen(true);
-   };
-
-   const handleClose = () => setOpen(false);
-
-   const columns = [
-      { field: "id", headerName: "ID", width: 70 },
-      { 
-         field: "title", 
-         headerName: "Título", 
-         flex: 1, 
-         renderCell: (params) => (
-            <Typography 
-               variant="body2" 
-               color="primary" 
-               sx={{ 
-                  display: 'flex', alignItems: 'center', height: '100%', width: '100%', 
-                  whiteSpace: 'normal', wordBreak: 'break-word', 
-                  cursor: 'pointer', textDecoration: 'none', color: '#FFF',
-                  '&:hover': { color: '#1976d2', textDecoration: 'underline', transition: 'all ease-in-out .3s'}, 
-               }} 
-               onClick={() => handleOpen(params.row)}
-            >
-               {params.value}
-            </Typography>
-         )
-      },
-      { field: "assignedTo", headerName: "Atribuído Para", width: 150, renderCell: (params) => (
-         <Chip avatar={<Avatar>{params.value[0]}</Avatar>} label={params.value} />
-      )},
-      { field: "state", headerName: "Status", width: 130, renderCell: (params) => (
-         <Chip 
-            label={
-               params.value === "Feito" ? "Feito" :
-               params.value === "Fazendo" ? "Fazendo" :
-               "A Fazer"
-            }
-            color={
-               params.value === "Feito" ? "success" :
-               params.value === "Fazendo" ? "info" :
-               "default"
-            }
-            onClick={() => {console.log('Abrir Modal para mudar o status')}}
-         />
-      )},
-   ];
-
-
    return (
       <Card sx={{ mb: 2, p: 2, borderLeft: "5px solid #1976d2", backgroundColor: "rgba(255, 255, 255, 0.01)" }}>
          <CardContent>
@@ -117,90 +62,108 @@ export const CardBacklogComponents = ({
             </Box>
 
             {tasks.length > 0 ? (
-               <Accordion sx={{ width: '100%', mt: 2 }}>
-                  <AccordionSummary expandIcon={<ExpandMore />}>
-                     <Typography variant="subtitle1">Tasks</Typography>
-                  </AccordionSummary>
+               <>
+                  <Accordion sx={{ width: '100%', mt: 2, mb: 2 }}>
+                     <AccordionSummary expandIcon={<ExpandMore />}>
+                        <Typography variant="subtitle1">Tarefas</Typography>
+                     </AccordionSummary>
+                  
+                     <AccordionDetails>
+                        <Box sx={{ 
+                           maxHeight: 450, 
+                           overflowY: 'auto',
+                           '&::-webkit-scrollbar': {
+                              width: '8px',
+                           },
+                           '&::-webkit-scrollbar-thumb': {
+                              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                              borderRadius: '2px',
+                           },
+                           '&::-webkit-scrollbar-thumb:hover': {
+                              backgroundColor: 'rgba(255, 255, 255, 0.4)',
+                           },
+                           '&::-webkit-scrollbar-track': {
+                              backgroundColor: 'transparent',
+                           },
+                           scrollbarWidth: 'thin',
+                           scrollbarColor: 'rgba(255, 255, 255, 0.2) transparent',
+                        }}>
+                           <List>
+                              {tasks.map((task, index) => (
+                                 <ListItem key={task.id} divider={index !== tasks.length - 1}>
+                                    <ListItemText
+                                       primary={
+                                          <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+                                             {task.id}. {task.title}
+                                             <Chip 
+                                                label={
+                                                   task.state === "Feito" ? "Feito" :
+                                                   task.state === "Fazendo" ? "Fazendo" :
+                                                   "A Fazer"
+                                                }
+                                                color={
+                                                   task.state === "Feito" ? "success" :
+                                                   task.state === "Fazendo" ? "info" :
+                                                   "default"
+                                                }
+                                                onClick={() => {console.log('Abrir Modal para mudar o status')}}
+                                             />
+                                          </Box>
+                                       }
+                                       secondary={
+                                          <>
+                                             <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+                                                <Typography component="span" variant="body2">
+                                                   Atribuído para
+                                                   <Chip 
+                                                      sx={{ m: 1 }}
+                                                      avatar={<Avatar>{task.assignedTo[0]}</Avatar>} 
+                                                      label={`${task.assignedTo}`}
+                                                      onClick={() => console.log("Selecionar usuário, ao criar a Issue vai pegar o nome que foi criado da conta do usuário")}
+                                                   />
+                                                </Typography>
+                                                <Box>
+                                                   <IconButton onClick={() => console.log("Editar Task")}>
+                                                      <Edit/>
+                                                   </IconButton>
+                                                   <IconButton onClick={() => console.log("Deletar Task")}>
+                                                      <Delete/>
+                                                   </IconButton>
+                                                </Box>
+                                             </Box>
+                                             <br />
+                                             <Typography component="span" variant="body2">
+                                                {task.description}
+                                             </Typography>
+                                          </>
+                                       }
+                                    />
+                                 </ListItem>
+                              ))}
+                           </List>
+                        </Box>
+                     </AccordionDetails>
+                  </Accordion>
 
-                  <AccordionDetails>
-                     <Box sx={{ height: 380, width: "100%" }}>
-                        <DataGrid
-                           rows={tasks}
-                           columns={columns}
-                           pageSizeOptions={[5]}
-                           initialState={{
-                              pagination: {
-                                 paginationModel: {
-                                    pageSize: 5,
-                                 },
-                              },
-                           }}
-                           disableRowSelectionOnClick
-                           disableColumnMenu
-                           autoHeight
-                        />
-                     </Box>
-                  </AccordionDetails>
-               </Accordion>
+                  <Box sx={{ display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "flex-end"}}>
+                     <Button variant="contained" startIcon={<AddCircle />}>
+                        Criar Tarefa
+                     </Button>
+                  </Box>
+               </>
             ) :  (
-               <Box sx={{ mt: 2 }}>
-                  <Typography sx={{ p: 0.5, backgroundColor: 'rgba(255, 0, 0, 0.1)', width: '20%', display: 'flex', justifyContent: 'center'}} variant="body2" color="error">Nenhuma task encontrada</Typography>
+               <Box sx={{ mt: 2, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+                  <Typography sx={{ mt:'5px', p: 1, border: '2px solid rgba(255, 0, 0, 0.4)', color: 'rgba(255, 0, 0, 0.7)', backgroundColor: 'rgba(255, 0, 0, 0.1)'}} variant="body2">
+                     Nenhuma Tarefa criada
+                  </Typography>
+               
+                  <Button variant="contained" startIcon={<AddCircle />}>
+                     Criar Tarefa
+                  </Button>
                </Box>
             )}
 
-            <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
-               <Button variant="contained" startIcon={<AddCircle />}>
-                  Criar Task
-               </Button>
-            </Box>
          </CardContent>
-
-         <Modal
-            open={open}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{ timeout: 500 }}
-         >
-            <Fade in={open}>
-               <Box sx={{ 
-                  position: "absolute", 
-                  top: "50%", 
-                  left: "50%", 
-                  transform: "translate(-50%, -50%)",
-                  width: 450, 
-                  bgcolor: "background.paper", 
-                  boxShadow: 24, 
-                  p: 3, 
-                  borderRadius: 2
-               }}>
-                  <Typography variant="body1" sx={{ fontWeight: "bold", mb: 1, color: "rgba(255, 255, 255, 0.9)" }}>
-                     ID: {selectedTask?.id}. {selectedTask?.title}
-                  </Typography>
-
-                  <Divider sx={{ my: 2 }} />
-
-                  <Typography variant="body1" sx={{ mb: 2, color: "rgba(255, 255, 255, 0.9)" }}>
-                     {selectedTask?.description}
-                  </Typography>
-
-                  <Chip 
-                     label={selectedTask?.state} 
-                     color={selectedTask?.state === "Feito" ? "success" : selectedTask?.state === "in-progress" ? "primary" : "default"} 
-                  />
-
-                  <Button sx={{
-                     display: "flex",
-                     justifyContent: "center",
-                     alignItems: "center",
-                     width: "100%",
-                     mt: 2, 
-                  }} onClick={handleClose}>
-                     Fechar
-                  </Button>
-               </Box>
-            </Fade>
-         </Modal>
 
       </Card>
    );

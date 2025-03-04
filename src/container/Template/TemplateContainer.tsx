@@ -33,7 +33,7 @@ export const TemplateContainer = () => {
     handleKeyDown,
   } = useTemplateContainerRules();
   
-  const issues: ICardBacklogComponentsProps[] = [
+  const categories: ICardBacklogComponentsProps[] = [
     {
       order: 1,
       id: 10,
@@ -44,17 +44,17 @@ export const TemplateContainer = () => {
       tasks: [
         {
           id: 101,
-          title: "Criar lógica de adicionar produto ao carrinho", // maximo de 215 caracteres
+          title: "Criar lógica de adicionar produto ao carrinho",
           assignedTo: "Gustavo",
           state: "Feito",
-          description: "Pegue o incone de adicionar ao carrinho e faça a lógica de adicionar o produto ao carrinho",
+          description: "Pegue o icone de adicionar ao carrinho e faça a lógica de adicionar o produto ao carrinho",
         },
         {
           id: 102,
           title: "Criar lógica de remover produto do carrinho",
           assignedTo: "Gustavo",
           state: "Fazendo",
-          description: "Pegue o incone de remover do carrinho e faça a lógica de remover o produto do carrinho",
+          description: "Pegue o icone de remover do carrinho e faça a lógica de remover o produto do carrinho",
         },
         {
           id: 103,
@@ -141,7 +141,7 @@ export const TemplateContainer = () => {
 
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <TextField
-               label='Digite o título da issue'
+               label='Digite o título da categoria'
                value={textInputs.title}
                onChange={(e) => setTextInputs({ ...textInputs, title: e.target.value })}
                variant='outlined'
@@ -184,21 +184,21 @@ export const TemplateContainer = () => {
         <Box sx={{ margin: '30px 0' }}>
           <Button onClick={() => {
             if (textInputs.title === '' || textInputs.tags.length === 0) {
-              alert('Preencha todos os campos para criar uma issue');
+              alert('Preencha todos os campos para criar uma categoria');
               return;
             }else{
               alert(
-                `Issue criada com sucesso! \n\nTítulo: ${textInputs.title} \nTags: ${textInputs.tags.join(', ')}`
+                `categoria criada com sucesso! \n\nTítulo: ${textInputs.title} \nTags: ${textInputs.tags.join(', ')}`
               )
             }
           }} variant='contained' color='primary'>
-            Criar Issue 
+            Criar categoria 
           </Button>
         </Box>
 
          <Box sx={{ width: '100%', mx: "auto", mt: 4 }}>
-            {issues.map((issues) => (
-               <CardBacklogComponents key={issues.id} {...issues} />
+            {categories.map((categories) => (
+               <CardBacklogComponents key={categories.id} {...categories} />
             ))}
          </Box>
 
