@@ -1,10 +1,10 @@
 import { setLogLevel } from "firebase/app";
-setLogLevel('warn');
 
 import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth';
 import { getStorage } from "firebase/storage";
 import { getDatabase, ref, get, child, set, onValue, remove } from 'firebase/database';
+setLogLevel('warn');
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
