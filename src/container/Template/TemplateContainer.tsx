@@ -1,15 +1,15 @@
-import React from 'react';
+import * as React from 'react';
 
 import { 
-   Container, 
-   TextField, 
-   Button, 
-   Box, 
-   createTheme, 
-   ThemeProvider,
-   Autocomplete,
-   Chip,
-   Typography, 
+  Container, 
+  TextField, 
+  Button, 
+  Box, 
+  createTheme, 
+  ThemeProvider,
+  Autocomplete,
+  Chip,
+  Typography, 
 } from '@mui/material';
 
 import { CardBacklogComponents } from '../../components/CardBacklog/CardBacklogComponents.tsx';
@@ -18,9 +18,9 @@ import { ICardBacklogComponentsProps } from "../../components/CardBacklog/CardBa
 import { useTemplateContainerRules } from './TemplateContainer.rules.ts';
 
 const themeMode = createTheme({
-   palette: {
-      mode: 'dark',
-   },
+  palette: {
+    mode: 'dark',
+  },
 });
 
 export const TemplateContainer = () => {
@@ -133,20 +133,25 @@ export const TemplateContainer = () => {
 
       <Container>
 
-        <Box sx={{ margin: '30px 0' }}>
+        <Box sx={{ margin: '30px 0', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '30px'}}>
+            <img 
+              src="../../../../glLogomarca.png" 
+              alt="gl-Logomarca-Preta" 
+              style={{ width: '50px', height: 'auto', transform: 'scale(3)' }} 
+            />        
           <Typography variant='h3' color='primary' align='center'>
-            GL - Taskers
+            Taskers
           </Typography>
         </Box>
 
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <TextField
-               label='Digite o título da categoria'
-               value={textInputs.title}
-               onChange={(e) => setTextInputs({ ...textInputs, title: e.target.value })}
-               variant='outlined'
-               required
-               fullWidth
+              label='Digite o título da categoria'
+              value={textInputs.title}
+              onChange={(e) => setTextInputs({ ...textInputs, title: e.target.value })}
+              variant='outlined'
+              required
+              fullWidth
             />
 
             <Autocomplete
