@@ -2,7 +2,7 @@ import React from "react";
 import { 
    Card, CardContent, Typography, Chip, Box, Avatar, Button, 
    Accordion, AccordionSummary, AccordionDetails, 
-   List, ListItem, ListItemText, IconButton
+   List, ListItem, IconButton
 } from "@mui/material";
 import { AddCircle, Delete, Edit, ExpandMore } from "@mui/icons-material";
 
@@ -150,58 +150,6 @@ export const CardBacklogComponents = ({
                                           {task.description}
                                        </Typography>
                                     </Box>
-
-                                    {/* <ListItemText
-                                       primary={
-                                          <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                                             <Typography component="span">
-                                                {task.id}. {task.title}
-                                             </Typography>
-                                             <Chip 
-                                                label={
-                                                   task.state === "Feito" ? "Feito" :
-                                                   task.state === "Fazendo" ? "Fazendo" :
-                                                   "A Fazer"
-                                                }
-                                                color={
-                                                   task.state === "Feito" ? "success" :
-                                                   task.state === "Fazendo" ? "info" :
-                                                   "default"
-                                                }
-                                                onClick={() => {console.log('Abrir Modal para mudar o status')}}
-                                             />
-                                          </Box>
-                                       }
-                                       secondary={
-                                          <>
-                                             <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                                                <Box>
-                                                   <Typography component="span" variant="body2">
-                                                      Atribuído para
-                                                   </Typography>
-                                                   <Chip
-                                                      sx={{ m: 1 }}
-                                                      avatar={<Avatar>{task.assignedTo[0]}</Avatar>} 
-                                                      label={`${task.assignedTo}`}
-                                                      onClick={() => console.log("Selecionar usuário, ao criar a Issue vai pegar o nome que foi criado da conta do usuário")}
-                                                   />
-                                                </Box>
-                                                <Box>
-                                                   <IconButton onClick={() => console.log("Editar Task")}>
-                                                      <Edit/>
-                                                   </IconButton>
-                                                   <IconButton onClick={() => console.log("Deletar Task")}>
-                                                      <Delete/>
-                                                   </IconButton>
-                                                </Box>
-                                             </Box>
-                                             <br />
-                                             <Typography component="span" variant="body2">
-                                                {task.description}
-                                             </Typography>
-                                          </>
-                                       }
-                                    /> */}
 
                                  </ListItem>
                               ))}
